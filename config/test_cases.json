@@ -1,0 +1,37 @@
+[
+  {
+    "id": "TC01",
+    "type": "direct_query",
+    "question": "Chào bạn, bạn có thể giới thiệu các chính sách nghỉ phép cơ bản của VinFast không?",
+    "expected_behavior": "Chatbot trả lời trực tiếp từ System Prompt/Knowledge Base cơ bản, không cần gọi Tool dữ liệu cá nhân.",
+    "complexity": "Low"
+  },
+  {
+    "id": "TC02",
+    "type": "single_tool_query",
+    "question": "Hãy kiểm tra số ngày phép còn lại của nhân viên VF2026001.",
+    "expected_behavior": "Agent nhận diện nhu cầu tra cứu và tự động phát sinh Tool Call 'get_leave_balance' với mã nhân viên VF2026001.",
+    "complexity": "Medium"
+  },
+  {
+    "id": "TC03",
+    "type": "leave_request_creation",
+    "question": "Tôi là nhân viên VF2026001, hãy tạo đơn xin nghỉ phép 2 ngày từ 20/09/2026 đến 21/09/2026.",
+    "expected_behavior": "Agent tự động kiểm tra thông tin cần thiết và phát sinh Tool Call 'create_leave_request' với đúng mã nhân viên, thời gian nghỉ và số ngày nghỉ.",
+    "complexity": "Medium"
+  },
+  {
+    "id": "TC04",
+    "type": "multi_step_reasoning",
+    "question": "Tôi là nhân viên VF2026001 và muốn nghỉ phép 3 ngày từ 23/09/2026 đến 25/09/2026. Hãy kiểm tra xem tôi còn đủ ngày phép không, nếu đủ thì tạo đơn xin nghỉ cho tôi.",
+    "expected_behavior": "Agent thực hiện chuỗi suy luận ReAct đa bước: trước tiên gọi Tool 'get_leave_balance' để kiểm tra số ngày phép còn lại, sau đó dựa trên kết quả để quyết định có gọi 'create_leave_request' hay không. Nếu không đủ ngày phép, Agent không tạo đơn và giải thích lý do.",
+    "complexity": "High"
+  },
+  {
+    "id": "TC05",
+    "type": "edge_case_handling",
+    "question": "Hãy kiểm tra số ngày phép còn lại của nhân viên VF9999999.",
+    "expected_behavior": "Agent nhận kết quả NOT_FOUND từ Tool 'get_leave_balance' và đưa ra phản hồi lịch sự, chính xác, không bịa đặt thông tin nhân viên hoặc số ngày phép.",
+    "complexity": "Medium"
+  }
+]

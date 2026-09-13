@@ -140,6 +140,7 @@ def run_react_agent(user_query: str, provider, mcp_server: MCPAcademicServer) ->
                 "query": user_query,
                 "action_type": "TOOL_EXECUTION",
                 "tool_name": tool_name,
+                "thought": thought,
                 "arguments": arguments,
                 "observation": obs_data,
                 "latency_ms": latency_ms
